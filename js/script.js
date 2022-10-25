@@ -256,12 +256,12 @@ window.addEventListener('DOMContentLoaded', () => {
                 display: block;
                 margin: 0 auto;
             `;
-            // form.append(statusMessage); 
-            form.insertAdjacentElement('afterend', statusMessage);
+            // form.append(statusMessage); // визуально не практично изза наличия flex в css. Элемент добавляется к существующим и весь набор смещается влево
+            form.insertAdjacentElement('afterend', statusMessage); // Альтернатива append в данном случае
 
-            const request = new XMLHttpRequest();
-            request.open('POST', 'server.php');
-            request.setRequestHeader('Content-type', 'application/json'); // при использовании связки XMLHttpRequest объекта + formData ЗАГОЛОВКИ УСТАНАВЛИВАТЬ НЕ НУЖНО, они устанавливаются автоматически
+            // const request = new XMLHttpRequest();
+            // request.open('POST', 'server.php');
+            // request.setRequestHeader('Content-type', 'application/json'); // при использовании связки XMLHttpRequest объекта + formData ЗАГОЛОВКИ УСТАНАВЛИВАТЬ НЕ НУЖНО, они устанавливаются автоматически
             const formData = new FormData(form); // для правильной работы FormData в html коде всегда должна присутствовать форма name!!!
             
             const object = {};
@@ -269,20 +269,37 @@ window.addEventListener('DOMContentLoaded', () => {
                 object[key] = value;
             });
 
-            const json = JSON.stringify(object);
+            // const json = JSON.stringify(object);
 
-            request.send(json);
 
-            request.addEventListener('load', () => {
-                if (request.status === 200) {
-                    console.log(request.response);
-                    showThanksModal(message.succes);
-                    form.reset();
-                    statusMessage.remove();
-                } else {
-                    showThanksModal(message.failure);
-                }
+            fetch('server.php', {
+                method: "POST",
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(object)
+            })
+            .then(data => data.text())
+            .then(data => {
+                console.log(data);
+                showThanksModal(message.succes);
+                statusMessage.remove();
+            }).catch(() => {
+                showThanksModal(message.failure);
+            }).finally(() => {
+                form.reset();
             });
+
+            // request.addEventListener('load', () => {
+            //     if (request.status === 200) {
+            //         console.log(request.response);
+            //         showThanksModal(message.succes);
+            //         form.reset();
+            //         statusMessage.remove();
+            //     } else {
+            //         showThanksModal(message.failure);
+            //     }
+            // });
         });
     }
 
