@@ -1,7 +1,5 @@
-function timer() {
+function timer(id, deadline) {
 // Timer
-
-const deadline = '2022-11-01';
 
 function getTimeRemainig(endtime) {
     let days, hours, minutes, seconds;
@@ -37,7 +35,7 @@ function getZero(num) {
 }
 
 function setClock(selector, endtime) {
-    const timer = document.querySelector(selector);
+    const timer = document.querySelector(selector),
             days = timer.querySelector('#days'),
             hours = timer.querySelector('#hours'),
             minutes = timer.querySelector('#minutes'),
@@ -60,7 +58,7 @@ function setClock(selector, endtime) {
     }
 }
 
-setClock('.timer', deadline);
+setClock(id, deadline);
 }
 
-module.exports = timer;
+export default timer;

@@ -1,21 +1,21 @@
-function slider() {
+function slider({container, slide, nextArrow, prevArrow, totalCounter, currentCounter, wrapper, field}) {
 // Slider 
 
 let offset = 0;
 let slideIndex = 1;
 
 // ПРОСТОЙ ВАРИАНТ 
-const slides = document.querySelectorAll('.offer__slide'),
+const slides = document.querySelectorAll(slide),
         // Получение точек для слайдера
-        slider = document.querySelector('.offer__slider'),
+        slider = document.querySelector(container),
         //
-        prev = document.querySelector('.offer__slider-prev'),
-        next = document.querySelector('.offer__slider-next'),
-        total = document.querySelector('#total'),
-        current = document.querySelector('#current');
+        prev = document.querySelector(prevArrow),
+        next = document.querySelector(nextArrow),
+        total = document.querySelector(totalCounter),
+        current = document.querySelector(currentCounter),
         // добавление из второго варианта
-        slidesWrapper = document.querySelector('.offer__slider-wrapper'),
-        slidesField = document.querySelector('.offer__slider-inner'),
+        slidesWrapper = document.querySelector(wrapper),
+        slidesField = document.querySelector(field),
         width = window.getComputedStyle(slidesWrapper).width;
 
 
@@ -79,8 +79,8 @@ slides.forEach(slide => {
 
 slider.style.position = 'relative';
 
-const indicators = document.createElement('ol');
-        dots = [];
+const indicators = document.createElement('ol'),
+      dots = [];
 
 indicators.classList.add('carousel-indicators');
 indicators.style.cssText = `
@@ -212,4 +212,4 @@ dots.forEach(dot => {
     }
 }
 
-module.exports = slider;
+export default slider;

@@ -1,3 +1,5 @@
+import {getResource} from '../services/services';
+
 function cards() {
 // Используем классы для карточек
 
@@ -47,15 +49,6 @@ getResource('http://localhost:3000/menu')
         });
 });
 
-async function getResource (url) {
-    let result = await fetch(url);
-
-    if (!result.ok) {
-        throw new Error(`Could not fetch ${url}, status: ${result.status}`);
-    }
-
-    return await result.json();
-  }
 // Один вариант
 // const div = new MenuCard();
 // div.render();
@@ -135,4 +128,4 @@ async function getResource (url) {
 //             });
 }
 
-module.exports = cards;
+export default cards;
