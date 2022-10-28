@@ -1,7 +1,7 @@
 function timer() {
 // Timer
 
-const deadline = '2022-10-31';
+const deadline = '2022-11-01';
 
 function getTimeRemainig(endtime) {
     let days, hours, minutes, seconds;
@@ -13,10 +13,10 @@ function getTimeRemainig(endtime) {
         minutes = 0;
         seconds = 0;
     } else {
-        days = Math.floor(t / (1000 * 60 * 60 * 24)),
-        hours = Math.floor((t / (1000 * 60 * 60)) % 24),
-        minutes = Math.floor((t / (1000 * 60)) % 60),
-        seconds = Math.floor((t / 1000) % 60);
+        days = Math.floor( (t / (1000 * 60 * 60 * 24)) ),
+        hours = Math.floor( (t / (1000 * 60 * 60) % 24) ),
+        minutes = Math.floor( (t / (1000 * 60) % 60) ),
+        seconds = Math.floor( (t / 1000) % 60 );
     }
 
     return {
@@ -30,7 +30,7 @@ function getTimeRemainig(endtime) {
 
 function getZero(num) {
     if (num >= 0 && num < 10) {
-        return `0${num}`;
+        return '0' + num;
     } else {
         return num;
     }

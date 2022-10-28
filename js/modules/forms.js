@@ -50,9 +50,6 @@ function bindPostData(form) {
 
         const json = JSON.stringify(Object.fromEntries(formData.entries()));
 
-        const obj = {a: 23, b: 50};
-        console.log(Object.entries(obj));
-
         // const json = JSON.stringify(object);
 
         // fetch('server.php', {

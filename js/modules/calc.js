@@ -20,6 +20,21 @@ if (localStorage.getItem('ratio')) {
     localStorage.setItem('ratio', 1.375);
 }
 
+function calcTotal() { //Если пользователь что-то не ввел, будет отображаться нужный текст(в данном случае "____")
+    if (!sex || !height || !weight || !age || !ratio) {
+        result.textContent = '____';
+        return;
+    }
+
+    if (sex == 'female') { // условия расчета по формулам в зависимости от выбранного пола
+        result.textContent = Math.round((447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age)) * ratio);
+    } else {
+        result.textContent = Math.round((88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age)) * ratio);
+    }
+}
+
+calcTotal();
+
 function initLocalSettings(selector, activeClass) {
     const elements = document.querySelectorAll(selector);
 
@@ -43,21 +58,6 @@ initLocalSettings('.calculating__choose_big div', 'calculating__choose-item_acti
 //     weight, 
 //     age, 
 //     ratio = 1.375;
-
-function calcTotal() { //Если пользователь что-то не ввел, будет отображаться нужный текст(в данном случае "____")
-    if (!sex || !height || !weight || !age || !ratio) {
-        result.textContent = '____';
-        return;
-    }
-
-    if (sex == 'female') { // условия расчета по формулам в зависимости от выбранного пола
-        result.textContent = Math.round((447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age)) * ratio);
-    } else {
-        result.textContent = Math.round((88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age)) * ratio);
-    }
-}
-
-calcTotal();
 
 // function getStaticInformation(parentSelector, activeClass) {
 //     const elements = document.querySelectorAll(`${parentSelector} div`);
@@ -140,4 +140,4 @@ getDynamicInformation('#weight');
 getDynamicInformation('#age');
 }
 
-module.exports = calculator;
+module.exports = calc;

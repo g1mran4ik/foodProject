@@ -40,15 +40,22 @@ class MenuCard {
     }
 }
 
-const getResource = async (url) => {
-    const result = await fetch(url);
+getResource('http://localhost:3000/menu')
+    .then(data => {
+        data.forEach(({img, altimg, title, descr, price}) => {
+            new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
+        });
+});
+
+async function getResource (url) {
+    let result = await fetch(url);
 
     if (!result.ok) {
         throw new Error(`Could not fetch ${url}, status: ${result.status}`);
     }
 
     return await result.json();
-};
+  }
 // Один вариант
 // const div = new MenuCard();
 // div.render();
@@ -85,7 +92,7 @@ const getResource = async (url) => {
 //     'menu__item'
 // ).render();
 
-// ТРЕТИЙ РАБОЧИЙ ВАРИАНТ
+// ТРЕТИЙ РАБОЧИЙ ВАРИАНТ (использован выше!!!)
 // getResource('http://localhost:3000/menu')
 //     .then(data => {
 //         data.forEach(({img, altimg, title, descr, price}) => {
@@ -119,13 +126,13 @@ const getResource = async (url) => {
 //    }
 
 // ПЯТЫЙ ВАРИАНТ с библиотекой axios (активный)
-axios.get('http://localhost:3000/menu') // Библиотека axios упрощает жизнь при запросе информации с сервера 
-            .then(data => {
-/* ВАЖНО, по доке тут 
-дважды ставим дату!!!*/ data.data.forEach(({img, altimg, title, descr, price}) => {
-                      new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
-                      });
-            });
+// axios.get('http://localhost:3000/menu') // Библиотека axios упрощает жизнь при запросе информации с сервера 
+//             .then(data => {
+// /* ВАЖНО, по доке тут 
+// дважды ставим дату!!!*/ data.data.forEach(({img, altimg, title, descr, price}) => {
+//                       new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
+//                       });
+//             });
 }
 
 module.exports = cards;

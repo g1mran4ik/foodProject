@@ -1,6 +1,9 @@
 function slider() {
 // Slider 
 
+let offset = 0;
+let slideIndex = 1;
+
 // ПРОСТОЙ ВАРИАНТ 
 const slides = document.querySelectorAll('.offer__slide'),
         // Получение точек для слайдера
@@ -14,7 +17,7 @@ const slides = document.querySelectorAll('.offer__slide'),
         slidesWrapper = document.querySelector('.offer__slider-wrapper'),
         slidesField = document.querySelector('.offer__slider-inner'),
         width = window.getComputedStyle(slidesWrapper).width;
-let slideIndex = 1;
+
 
 // showSlides(slideIndex);
 
@@ -55,8 +58,6 @@ let slideIndex = 1;
 // next.addEventListener('click', () => {
 //     plusSlides(1);
 // });
-
-let offset = 0;
 
 if (slides.length < 10) {
     total.textContent = `0${slides.length}`;
@@ -120,11 +121,6 @@ for (let i = 0; i < slides.length; i++) {
     indicators.append(dot);
     dots.push(dot);
 } 
-
-// Добавляем функцию для замены неЦифр на пустые символы
-function deleteNotDigits(str) {
-    return +str.replace(/\D/g, '');
-}
 
 next.addEventListener('click', () => {
     // if (offset === +width.slice(0, width.length - 2) * (slides.length - 1)) {
@@ -209,6 +205,11 @@ dots.forEach(dot => {
         dots[slideIndex - 1].style.opacity = 1;         
     });
 });
+
+    // Добавляем функцию для замены неЦифр на пустые символы
+    function deleteNotDigits(str) {
+    return +str.replace(/\D/g, '');
+    }
 }
 
 module.exports = slider;

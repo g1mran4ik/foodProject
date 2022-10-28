@@ -4,15 +4,6 @@ function modal() {
 const modalTrigger = document.querySelectorAll('[data-modal]'),
         modal = document.querySelector('.modal');
 
-function openModal() {
-    modal.classList.add('show');
-    modal.classList.remove('hide');
-    // использование toggle
-    // modal.classList.toggle('show');
-    document.body.style.overflow = 'hidden';
-    clearInterval(modalTimerId);
-}
-
 modalTrigger.forEach(btn => {
     btn.addEventListener('click', openModal);      
 });
@@ -23,6 +14,15 @@ function closeModal() {
     // использование toggle
     // modal.classList.toggle('show');
     document.body.style.overflow = '';
+}
+
+function openModal() {
+    modal.classList.add('show');
+    modal.classList.remove('hide');
+    // использование toggle
+    // modal.classList.toggle('show');
+    document.body.style.overflow = 'hidden';
+    clearInterval(modalTimerId);
 }
 
 modal.addEventListener('click', (e) => {
