@@ -37,7 +37,7 @@ function getZero(num) {
 }
 
 function setClock(selector, endtime) {
-    const timer = document.querySelector(selector);
+    const timer = document.querySelector(selector),
             days = timer.querySelector('#days'),
             hours = timer.querySelector('#hours'),
             minutes = timer.querySelector('#minutes'),
