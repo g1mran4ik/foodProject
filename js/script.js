@@ -1,3 +1,10 @@
+require('es6-promise').polyfill();
+// Когда мы устанавливаем npm пакеты, они заносятся в node_modules
+// Поэтому после установки мы ИМПОРТИРУЕМ его из этой папки
+import 'nodelist-foreach-polyfill';
+// такой импорт - ОЧЕНЬ полезная фича
+
+
 import tabs from './modules/tabs';
 import modal from './modules/modal';
 import slider from './modules/slider';
