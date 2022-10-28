@@ -213,3 +213,4 @@ dots.forEach(dot => {
 }
 
 export default slider;
+

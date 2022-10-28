@@ -725,6 +725,8 @@ dots.forEach(dot => {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (slider);
 
+
+
 /***/ }),
 
 /***/ "./js/modules/tabs.js":
@@ -857,6 +859,7 @@ setClock(id, deadline);
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (timer);
+
 
 /***/ }),
 
